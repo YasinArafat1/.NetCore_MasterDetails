@@ -62,7 +62,6 @@ namespace masterdetailsCore.Controllers
                 c.Phone = candidateVM.Phone;
                 c.Fresher = candidateVM.Fresher;
 
-
                 //for image
                 string webroot = _he.WebRootPath;
                 string folder = "Candidate_Images";
@@ -82,13 +81,13 @@ namespace masterdetailsCore.Controllers
                         Candidate = c,
                         CandidateId = c.CandidateId,
                         SkillId = item
-
                     };
+
                     _context.CandidateSkills.Add(candidateSkill);
-                    _context.SaveChanges();
-                    return RedirectToAction("Index");
                 }
 
+                _context.SaveChanges(); // Save changes after processing all skills
+                return RedirectToAction("Index");
             }
 
             return View();
